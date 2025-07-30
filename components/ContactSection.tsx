@@ -14,7 +14,7 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
 
-  const handleInputChange = (e) => {
+ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     if (name === 'message' && value.length > 500) return;
     setFormData(prev => ({
@@ -23,7 +23,9 @@ export default function ContactSection() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+
+
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.preventDefault();
     if (isSubmitting) return;
 
