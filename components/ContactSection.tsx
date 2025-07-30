@@ -25,7 +25,7 @@ export default function ContactSection() {
 
 
 
-const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+const handleInputChange = async(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.preventDefault();
     if (isSubmitting) return;
 
