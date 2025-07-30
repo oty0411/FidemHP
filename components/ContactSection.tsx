@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -14,7 +13,9 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
 
- const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     if (name === 'message' && value.length > 500) return;
     setFormData(prev => ({
@@ -23,9 +24,7 @@ export default function ContactSection() {
     }));
   };
 
-
-
-const handleInputChange = async(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isSubmitting) return;
 
@@ -145,107 +144,4 @@ const handleInputChange = async(e: React.ChangeEvent<HTMLInputElement | HTMLText
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none text-sm"
-                      placeholder="ご質問やご相談内容をお聞かせください（500文字以内）"
-                      required
-                      maxLength={500}
-                    />
-                    <div className="text-right text-sm text-gray-500 mt-1">
-                      {formData.message.length}/500文字
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-300 text-white py-4 rounded-lg font-semibold text-lg transition-all duration-300 whitespace-nowrap cursor-pointer"
-                  >
-                    {isSubmitting ? '送信中...' : '送信する'}
-                  </button>
-
-                  {submitStatus && (
-                    <div
-                      className={`p-4 rounded-lg text-sm ${
-                        submitStatus.includes('ありがとう')
-                          ? 'bg-green-50 text-green-700'
-                          : submitStatus.includes('送信中')
-                          ? 'bg-blue-50 text-blue-700'
-                          : 'bg-red-50 text-red-700'
-                      }`}
-                    >
-                      {submitStatus}
-                    </div>
-                  )}
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div className="space-y-8">
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">会社情報</h3>
-
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 flex items-center justify-center bg-purple-100 rounded-full flex-shrink-0 mt-1">
-                    <i className="ri-building-line w-4 h-4 flex items-center justify-center text-purple-600"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">会社名</h4>
-                    <p className="text-gray-600">株式会社FIDEM</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 flex items-center justify-center bg-purple-100 rounded-full flex-shrink-0 mt-1">
-                    <i className="ri-map-pin-line w-4 h-4 flex items-center justify-center text-purple-600"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">所在地</h4>
-                    <p className="text-gray-600">
-                      〒810-0041<br />
-                      福岡県福岡市中央区大名1丁目3-41<br />
-                      プリオ大名ビル 2F
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 flex items-center justify-center bg-purple-100 rounded-full flex-shrink-0 mt-1">
-                    <i className="ri-time-line w-4 h-4 flex items-center justify-center text-purple-600"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">営業時間</h4>
-                    <p className="text-gray-600">
-                      平日 9:00 - 18:00<br />
-                      土日祝日 休業
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">アクセス</h3>
-              <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.4089876543216!2d130.39611531521485!3d33.59073468073045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191b6f6e3b7ff%3A0x12345!2z5aSn5ZCN!5e0!3m2!1sja!2sjp!4v1234567890123!5m2!1sja!2sjp"
-                  width="100%"
-                  height="250"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="FIDEM所在地"
-                ></iframe>
-              </div>
-              <p className="text-sm text-gray-600 mt-4">
-                地下鉄天神南駅から徒歩3分、天神駅から徒歩8分
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pu
